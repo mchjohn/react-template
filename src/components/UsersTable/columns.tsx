@@ -10,22 +10,37 @@ export const COLUMNS: ColumnDef<IUser>[] = [
   {
     accessorKey: 'name',
     header: 'Nome',
+    meta: {
+      nameInFilters: 'Nome',
+    },
   },
   {
     accessorKey: 'race',
     header: 'Raça',
     size: 80,
+    meta: {
+      nameInFilters: 'Raça',
+    },
   },
   {
     accessorKey: 'class',
     header: 'Classe',
+    meta: {
+      nameInFilters: 'Classe',
+    },
   },
   {
     accessorKey: 'weapons',
     header: 'Armas',
+    meta: {
+      nameInFilters: 'Armas',
+    },
   },
   {
     accessorKey: 'ally',
     header: 'Aliado',
+    meta: {
+      nameInFilters: 'Aliado',
+    },
   },
 ];

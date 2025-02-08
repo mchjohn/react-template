@@ -4,13 +4,20 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { Settings2Icon } from 'lucide-react';
 import { useMemo } from 'react';
 
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { Table, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 
-import { MemoizedTableBody } from './DataTableBody';
+import { DataTableBody, MemoizedDataTableBody } from './DataTableBody';
 
 interface IDataTableProps<TData> {
   data: TData[];
@@ -42,39 +49,67 @@ export function DataTable<TData>({ data, columns }: IDataTableProps<TData>) {
   );
 
   return (
-    <Table style={colSizeVariables}>
-      <TableHeader>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <TableRow key={headerGroup.id}>
-            {headerGroup.headers.map((header) => (
-              <TableHead
-                key={header.id}
-                colSpan={header.colSpan}
-                style={{
-                  width: `calc(var(--header-${header.id}-size) * 1px)`,
-                }}
-                className="group relative"
+    <div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">
+            <Settings2Icon /> Visualizar
+          </Button>
+        </DropdownMenuTrigger>
+
+        <DropdownMenuContent>
+          {table.getAllColumns().map((column) =>
+            !column.getCanHide() ? null : (
+              <DropdownMenuCheckboxItem
+                key={column.id}
+                checked={column.getIsVisible()}
+                disabled={!column.getCanHide()}
+                onCheckedChange={column.toggleVisibility}
               >
-                {flexRender(
-                  header.column.columnDef.header,
-                  header.getContext(),
-                )}
+                {column.columnDef.meta?.nameInFilters}
+              </DropdownMenuCheckboxItem>
+            ),
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
 
-                <Button
-                  onMouseDown={header.getResizeHandler()}
-                  onTouchStart={header.getResizeHandler()}
-                  className={cn(
-                    'top-0 border-0 rounded-none p-0 right-0 absolute bg-primary/40 opacity-0 group-hover:opacity-100 w-1.5 h-full transition-all duration-300 cursor-col-resize',
-                    header.column.getIsResizing() && 'opacity-100 bg-primary',
+      <Table style={colSizeVariables}>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <TableHead
+                  key={header.id}
+                  colSpan={header.colSpan}
+                  className="group relative"
+                  style={{
+                    width: `calc(var(--header-${header.id}-size) * 1px)`,
+                  }}
+                >
+                  {flexRender(
+                    header.column.columnDef.header,
+                    header.getContext(),
                   )}
-                />
-              </TableHead>
-            ))}
-          </TableRow>
-        ))}
-      </TableHeader>
 
-      <MemoizedTableBody table={table} />
-    </Table>
+                  <Button
+                    onMouseDown={header.getResizeHandler()}
+                    onTouchStart={header.getResizeHandler()}
+                    className={cn(
+                      'top-0 border-0 rounded-none p-0 right-0 absolute bg-primary/40 opacity-0 group-hover:opacity-100 w-1.5 h-full transition-all duration-300 cursor-col-resize',
+                      header.column.getIsResizing() && 'opacity-100 bg-primary',
+                    )}
+                  />
+                </TableHead>
+              ))}
+            </TableRow>
+          ))}
+        </TableHeader>
+
+        {columnSizingInfo.isResizingColumn && (
+          <MemoizedDataTableBody table={table} />
+        )}
+        {!columnSizingInfo.isResizingColumn && <DataTableBody table={table} />}
+      </Table>
+    </div>
   );
 }
