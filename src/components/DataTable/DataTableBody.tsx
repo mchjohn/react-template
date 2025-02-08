@@ -1,9 +1,13 @@
-import { flexRender, Table } from '@tanstack/react-table';
-
-import { TableBody, TableCell, TableRow } from '@/components/ui/table';
+import { flexRender } from '@tanstack/react-table';
 import { memo } from 'react';
 
-export function DataTableBody({ table }: { table: Table<any> }) {
+import { TableBody, TableCell, TableRow } from '@/components/ui/table';
+
+import { useDataTable } from './DataTableContext';
+
+export function DataTableBody() {
+  const { table } = useDataTable();
+
   return (
     <TableBody>
       {table.getRowModel().rows.map((row) => (
