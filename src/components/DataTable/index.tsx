@@ -91,14 +91,17 @@ export function DataTable<TData>({ data, columns }: IDataTableProps<TData>) {
                     header.getContext(),
                   )}
 
-                  <Button
-                    onMouseDown={header.getResizeHandler()}
-                    onTouchStart={header.getResizeHandler()}
-                    className={cn(
-                      'top-0 border-0 rounded-none p-0 right-0 absolute bg-primary/40 opacity-0 group-hover:opacity-100 w-1.5 h-full transition-all duration-300 cursor-col-resize',
-                      header.column.getIsResizing() && 'opacity-100 bg-primary',
-                    )}
-                  />
+                  {header.column.getCanResize() && (
+                    <Button
+                      onMouseDown={header.getResizeHandler()}
+                      onTouchStart={header.getResizeHandler()}
+                      className={cn(
+                        'top-0 border-0 rounded-none p-0 right-0 absolute bg-primary/40 opacity-0 group-hover:opacity-100 w-1.5 h-full transition-all duration-300 cursor-col-resize',
+                        header.column.getIsResizing() &&
+                          'opacity-100 bg-primary',
+                      )}
+                    />
+                  )}
                 </TableHead>
               ))}
             </TableRow>
