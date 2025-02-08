@@ -11,7 +11,11 @@ export function UsersTable() {
     <DataTable data={USERS} columns={COLUMNS}>
       <div className="flex justify-between mb-4">
         <DataTableTextField />
-        <DataTableColumnsVisibilityDropdown />
+
+        <div className="flex gap-2">
+          {/* <DataTableFacetedFilter column="race" /> */}
+          <DataTableColumnsVisibilityDropdown />
+        </div>
       </div>
 
       <DataTableContent />

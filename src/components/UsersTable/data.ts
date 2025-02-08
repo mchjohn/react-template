@@ -8,6 +8,7 @@ export const USERS: IUser[] = [
     class: 'Rainha dos Elfos / Feiticeira',
     weapons: ['Magia', 'Nenya (um dos Três Anéis élficos)'],
     ally: 'Lothlórien, Sociedade do Anel',
+    age: 8000,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const USERS: IUser[] = [
     class: 'Aventureiro',
     weapons: ['Sting', 'Mithril'],
     ally: 'Sociedade do Anel',
+    age: 50,
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const USERS: IUser[] = [
     class: 'Ranger / Rei',
     weapons: ['Andúril', 'Adaga'],
     ally: 'Gondor, Sociedade do Anel',
+    age: 87,
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const USERS: IUser[] = [
     class: 'Mago',
     weapons: ['Glamdring', 'Bastão'],
     ally: 'Sociedade do Anel',
+    age: 10000,
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ export const USERS: IUser[] = [
     class: 'Arqueiro',
     weapons: ['Arco élfico', 'Adagas'],
     ally: 'Sociedade do Anel',
+    age: 2900,
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ export const USERS: IUser[] = [
     class: 'Guerreiro',
     weapons: ['Machado de batalha', 'Machado de mão'],
     ally: 'Sociedade do Anel',
+    age: 139,
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ export const USERS: IUser[] = [
     class: 'Jardineiro / Aventureiro',
     weapons: ['Adaga élfica'],
     ally: 'Frodo Bolseiro',
+    age: 38,
   },
   {
     id: 8,
@@ -64,6 +71,7 @@ export const USERS: IUser[] = [
     class: 'Guerreiro',
     weapons: ['Espada longa', 'Escudo'],
     ally: 'Gondor, Sociedade do Anel',
+    age: 41,
   },
   {
     id: 9,
@@ -72,6 +80,7 @@ export const USERS: IUser[] = [
     class: 'Mago',
     weapons: ['Magia', 'Bastão'],
     ally: 'Mordor (traidor dos magos)',
+    age: 10000,
   },
   {
     id: 10,
@@ -80,6 +89,7 @@ export const USERS: IUser[] = [
     class: 'Senhor das Trevas',
     weapons: ['Anel do Poder'],
     ally: 'Mordor',
+    age: 50000,
   },
   {
     id: 11,
@@ -88,5 +98,6 @@ export const USERS: IUser[] = [
     class: 'Criatura',
     weapons: ['Astúcia', 'Dentes'],
     ally: 'Ele mesmo / O Anel',
+    age: 589,
   },
 ];

@@ -5,4 +5,5 @@ export interface IUser {
   class: string;
   weapons: string[];
   ally: string;
+  age: number;
 }

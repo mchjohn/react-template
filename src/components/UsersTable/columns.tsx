@@ -54,6 +54,15 @@ export const COLUMNS: ColumnDef<IUser>[] = [
     },
   },
   {
+    accessorKey: 'age',
+    header: 'Idade',
+    size: 40,
+    maxSize: 40,
+    meta: {
+      nameInFilters: 'Idade',
+    },
+  },
+  {
     id: 'actions',
     size: 40,
     maxSize: 40,
