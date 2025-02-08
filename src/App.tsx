@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button';
+import { UsersTable } from './components/UsersTable';
 
 function App() {
   return (
-    <div className="h-screen bg-zinc-950 justify-center items-center flex">
-      <Button>ReactJs Template Base</Button>
+    <div className="p-10">
+      <UsersTable />
     </div>
   );
 }
