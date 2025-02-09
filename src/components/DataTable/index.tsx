@@ -5,6 +5,7 @@ import {
   getFacetedRowModel,
   getFacetedUniqueValues,
   getFilteredRowModel,
+  getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { ReactNode } from 'react';
@@ -31,6 +32,7 @@ export function DataTable<TData>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedMinMaxValues: getFacetedMinMaxValues(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   return (

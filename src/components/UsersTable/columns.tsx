@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 
+import { DataTableColumnHeader } from '../DataTable/DataTableColumnHeader';
+
 /**
  * Caso necessário usar hooks, states ou códigos mais complexos
  * o ideal é usar o useMemo<ColumnDef<IUser>[]> para memoizar esse array.
@@ -19,14 +21,18 @@ import {
 export const COLUMNS: ColumnDef<IUser>[] = [
   {
     accessorKey: 'name',
-    header: 'Nome',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Nome" />
+    ),
     meta: {
       nameInFilters: 'Nome',
     },
   },
   {
     accessorKey: 'race',
-    header: 'Raça',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Raça" />
+    ),
     size: 80,
     meta: {
       nameInFilters: 'Raça',
@@ -34,28 +40,36 @@ export const COLUMNS: ColumnDef<IUser>[] = [
   },
   {
     accessorKey: 'class',
-    header: 'Classe',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Classe" />
+    ),
     meta: {
       nameInFilters: 'Classe',
     },
   },
   {
     accessorKey: 'weapons',
-    header: 'Armas',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Armas" />
+    ),
     meta: {
       nameInFilters: 'Armas',
     },
   },
   {
     accessorKey: 'ally',
-    header: 'Aliado',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Aliado" />
+    ),
     meta: {
       nameInFilters: 'Aliado',
     },
   },
   {
     accessorKey: 'age',
-    header: 'Idade',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Idade" />
+    ),
     size: 40,
     maxSize: 40,
     meta: {
