@@ -4,6 +4,7 @@ import { Edit2Icon, EllipsisIcon, Trash2Icon } from 'lucide-react';
 import { IUser } from '@/interfaces/user';
 
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,6 +20,31 @@ import { DataTableColumnHeader } from '../DataTable/DataTableColumnHeader';
  */
 
 export const COLUMNS: ColumnDef<IUser>[] = [
+  {
+    id: 'select',
+    size: 40,
+    maxSize: 40,
+    enableHiding: false,
+    enableSorting: false,
+    enableResizing: false,
+    enableColumnFilter: false,
+    enableGlobalFilter: false,
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && 'indeterminate')
+        }
+        onCheckedChange={() => table.toggleAllPageRowsSelected()}
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={row.getToggleSelectedHandler()}
+      />
+    ),
+  },
   {
     accessorKey: 'name',
     header: ({ column }) => (
