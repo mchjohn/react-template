@@ -10,7 +10,7 @@ import {
   PaginationState,
   useReactTable,
 } from '@tanstack/react-table';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useMemo, useRef } from 'react';
 
 import { DataTableContext } from './DataTableContext';
 
@@ -19,6 +19,7 @@ interface IDataTableProps<TData> {
   columns: ColumnDef<TData>[];
   children: ReactNode;
   pagination?: PaginationState;
+  onSelectRow?: (selectedRows: TData[]) => void;
 }
 
 export function DataTable<TData>({
@@ -26,6 +27,7 @@ export function DataTable<TData>({
   columns,
   children,
   pagination,
+  onSelectRow,
 }: IDataTableProps<TData>) {
   const table = useReactTable({
     data,
@@ -42,6 +44,19 @@ export function DataTable<TData>({
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
+
+  const selectedRow = useMemo(
+    () => table.getSelectedRowModel().flatRows.map((row) => row.original),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [table.getSelectedRowModel().flatRows],
+  );
+
+  const memoOnSelectRow = useRef(onSelectRow);
+  memoOnSelectRow.current = onSelectRow;
+
+  useEffect(() => {
+    memoOnSelectRow.current?.(selectedRow);
+  }, [selectedRow]);
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
